@@ -1,0 +1,38 @@
+<div class="container">
+  <form action="/api/sessions" method="post">
+    <div class="form-row">
+      <div class="form-group col-12">
+        <label for="name">Session</label>
+        <input type="text" class="form-control" id="sessionName" name="name">
+      </div>
+    </div>
+    <h3 class="form-row">Exercise Cards</h3>
+    <div class="form-row">
+      {{#each exercises}}
+      <div class="card m-3">
+        <input type="checkbox" name="exercises" value={{_id}}>
+        <div class="card-body">
+          <p class="card-title">{{name}}</p>
+          <p class="card-title">{{type}}</p>
+          {{#if distance}}
+          <span class="card-title">Weight: {{weight}}</span>
+          {{/if}}
+          {{#if distance}}
+          <span class="card-title">Sets: {{sets}}</span>
+          {{/if}}
+          {{#if distance}}
+          <span class="card-title">Reps: {{reps}}</span>
+          {{/if}}
+          {{#if distance}}
+          <span class="card-title">Duration: {{duration}}</span>
+          {{/if}}
+          {{#if distance}}
+          <span class="card-title">Distance: {{distance}}</span>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+      <button type="submit" class="btn btn-primary left">Save</button>
+  </form>
+</div>

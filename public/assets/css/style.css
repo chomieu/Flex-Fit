@@ -1,0 +1,19 @@
+body, html {
+  height: 100%;
+}
+
+.navbar {
+  height: 65px;
+  background-color: black;
+}
+
+.container {
+  height: calc(100% - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  border: 1px solid black;
+}
