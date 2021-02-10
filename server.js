@@ -10,14 +10,17 @@ app.use(express.static("public"))
 
 // Handlebars
 const exphbs = require("express-handlebars")
-app.engine("handlebars", exphbs({defaultLayout: "main"}))
+app.engine("handlebars", exphbs({ defaultLayout: "main" }))
 app.set("view engine", "handlebars")
 
 // Database
 const mongoose = require("mongoose")
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+})
 
 // Routes
 const routes = require("./controller.js")
