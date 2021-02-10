@@ -1,7 +1,6 @@
 // Set up the Express app
 const express = require("express")
 const logger = require("morgan")
-const PORT = process.env.PORT || 3000;
 const app = express()
 app.use(logger("dev"))
 app.use(express.urlencoded({ extended: true }))
@@ -25,6 +24,7 @@ const routes = require("./controller.js")
 app.use(routes)
 
 // Server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`)
 });
