@@ -1,61 +1,44 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  firstName: {
+const ExerciseSchema = new Schema({
+  name: {
     type: String,
-    trim: true,
-    required: "First Name is Required"
+    required: true
   },
-
-  lastName: {
+  
+  type: {
     type: String,
-    trim: true,
-    required: "Last Name is Required"
+    required: true
   },
 
-  username: {
-    type: String,
-    trim: true,
-    required: "Username is Required"
+  weight: {
+    type: Number,
+    default: 0
   },
 
-  password: {
-    type: String,
-    trim: true,
-    required: "Password is Required",
-    validate: [({ length }) => length >= 6, "Password should be longer."]
+  sets: {
+    type: Number,
+    default: 0
   },
 
-  email: {
-    type: String,
-    unique: true,
-    match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
+  reps: {
+    type: Number,
+    default: 0
   },
 
-  userCreated: {
-    type: Date,
-    default: Date.now
+  duration: {
+    type: Number,
+    default: 0
   },
 
-  lastUpdated: Date,
-
-  fullName: String
+  distance: {
+    type: Number,
+    default: 0
+  },
+  
 });
 
-UserSchema.methods.setFullName = function() {
-  this.fullName = `${this.firstName} ${this.lastName}`;
+const Exercise = mongoose.model("Exercise", ExerciseSchema);
 
-  return this.fullName;
-};
-
-UserSchema.methods.lastUpdatedDate = function() {
-  this.lastUpdated = Date.now();
-
-  return this.lastUpdated;
-};
-
-const User = mongoose.model("User", UserSchema);
-
-module.exports = User;
+module.exports = Exercise;
