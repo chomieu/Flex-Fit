@@ -4,10 +4,9 @@ const db = require("./models")
 
 // main page
 router.get("/", (req, res) => {
-  db.Session.find({})
-  .populate("exercises")
+  db.Session.find({}).sort([['name', -1]]).populate("exercises").lean()
   .then(data => {
-    res.render("index", {all: data})
+    res.render("index", {sessions: data})
   })
 })
 

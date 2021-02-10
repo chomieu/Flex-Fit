@@ -1,7 +1,15 @@
 {{> navbar}}
 <div class="container">
   <div class="row">
-    <a href="/newSession" class="btn btn-primary mr-3">New session</a>
-    <a href="/newExercise" class="btn btn-primary">New Exercise</a>
+    {{#each sessions}}
+    <div class="sessionCard card p-3 col-4">
+      <h5>{{name}}</h5>
+      <div>
+        {{#each exercises}}
+        {{name}}
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
   </div>
 </div>

@@ -9,13 +9,13 @@
     <h3 class="form-row">Exercise Cards</h3>
     <div class="form-row">
       {{#each exercises}}
-      <div class="card m-3">
+      <div class="exerciseCard card m-3">
         <input type="checkbox" name="exercises" value={{_id}}>
-        <div class="card-body">
-          <p class="card-title">{{name}}</p>
-          <p class="card-title">{{type}}</p>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{name}}</h5>
+          <span class="card-title">{{type}}</span>
           {{#if distance}}
-          <span class="card-title">Weight: {{weight}}</span>
+          <span class="card-title">Weight: {{weight}} lbs</span>
           {{/if}}
           {{#if distance}}
           <span class="card-title">Sets: {{sets}}</span>
@@ -24,10 +24,10 @@
           <span class="card-title">Reps: {{reps}}</span>
           {{/if}}
           {{#if distance}}
-          <span class="card-title">Duration: {{duration}}</span>
+          <span class="card-title">Duration: {{duration}} mins</span>
           {{/if}}
           {{#if distance}}
-          <span class="card-title">Distance: {{distance}}</span>
+          <span class="card-title">Distance: {{distance}} mi.</span>
           {{/if}}
         </div>
       </div>
