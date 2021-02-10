@@ -29,4 +29,9 @@ body, html {
 
 .sessionCard {
   height: 200px;
+  padding: 1vw;
+}
+
+h5 {
+  font-size: min(20px, 4vw);
 }
