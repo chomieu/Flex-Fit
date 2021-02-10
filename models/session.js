@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 const now = new Date()
 
 const SessionSchema = new Schema({
@@ -13,8 +13,8 @@ const SessionSchema = new Schema({
     ref: "Exercise"
   }]
 
-});
+})
 
 const Session = mongoose.model("Session", SessionSchema);
 
-module.exports = Session;
+module.exports = Session

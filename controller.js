@@ -38,3 +38,5 @@ router.post("/api/exercises", (req, res) => {
     res.redirect("/")
   })
 })
+
+module.exports = router
