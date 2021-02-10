@@ -1,7 +1,13 @@
 // Express app
 const express = require("express")
+const logger = require("morgan")
 const PORT = process.env.PORT || 3000;
 const app = express()
+
+if (process.env.NODE_ENV !== "production") {
+  app.use(logger("dev"))
+}
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static("public"))
