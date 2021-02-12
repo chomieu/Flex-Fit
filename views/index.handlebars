@@ -3,16 +3,15 @@
 <div class="container-fluid">
   <div class="row">
     {{#each sessions}}
-    <section class="sessionCard card p-2 d-flex align-items-center">
+    <section class="sessionCard card p-2 align-items-center">
       <i class="material-icons text-secondary align-self-end clear" data-type="session" data-id="{{_id}}">clear</i>
       <h6 class="align-self-start ml-2">{{name}}</h6>
-      <div class="exercise-badge">
+      <div class="d-flex justify-content-center flex-wrap">
         {{#each exercises}}
-        <span class="badge badge-pill badge-light mr-1 px-3 py-1">{{name}}</span>
+        <span class="badge badge-pill badge-light m-1 px-3 py-1">{{name}}</span>
         {{/each}}
       </div>
     </section>
     {{/each}}
   </div>
-  <button id="deleteAll">DELETE</button>
 </div>

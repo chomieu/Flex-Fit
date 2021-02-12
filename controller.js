@@ -96,10 +96,4 @@ router.delete("/delete/exercise/:id", (req, res) => {
   })
 })
 
-// router.delete("/clearall", (req, res) => {
-//   db.Exercise.remove({}, (err, data) => {
-//     if (err) throw err
-//   })
-// })
-
 module.exports = router
