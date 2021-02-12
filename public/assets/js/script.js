@@ -2,9 +2,10 @@ $(function () {
 
   $(".clear").on("click", (e) => {
     var id = $(e.target).data("id")
+    var type = $(e.target).data("type")
     $(e.target).parent().remove()
 
-    $.ajax("/delete/" + id, {
+    $.ajax(`/delete/${type}/${id}`, {
       type: "DELETE",
     })
   })

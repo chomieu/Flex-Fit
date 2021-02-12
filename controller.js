@@ -22,7 +22,9 @@ router.get("/newSession", (req, res) => {
 
 // new exercise page
 router.get("/newExercise", (req, res) => {
-  res.render("partials/newExercise")
+  db.Exercise.find({}).limit(8).lean().then(data => {
+    res.render("partials/newExercise", { exercises: data })
+  })
 })
 
 // // session page
@@ -80,8 +82,15 @@ router.get("/api/exercises", (req, res) => {
 // })
 
 // delete session
-router.delete("/delete/:id", (req, res) => {
+router.delete("/delete/session/:id", (req, res) => {
   db.Session.findByIdAndRemove({_id: req.params.id}, (err, data) => {
+    if (err) throw err
+  })
+})
+
+// delete exercise
+router.delete("/delete/exercise/:id", (req, res) => {
+  db.Exercise.findByIdAndRemove({_id: req.params.id}, (err, data) => {
     if (err) throw err
   })
 })

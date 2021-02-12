@@ -1,7 +1,6 @@
 {{> navbar}}
 <div class="container">
   <form action="/api/exercises" method="post">
-
     <h4 class="text-center">New Exercise</h4>
 
     <div class="form-row mt-4">
@@ -59,4 +58,32 @@
     </div>
     <button type="submit" class="btn btn-outline-light btn-lg">Save</button>
   </form>
+  <div>
+    <div class="form-row d-flex justify-content-center">
+      {{#each exercises}}
+      <label class="exerciseCard card m-2" for={{_id}}>
+        <i class="material-icons align-self-end clear" data-type="exercise" data-id="{{_id}}">clear</i>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{name}}</h5>
+          <span class="card-title">{{type}}</span>
+          {{#if weight}}
+          <span class="card-title">Weight: {{weight}} lbs</span>
+          {{/if}}
+          {{#if sets}}
+          <span class="card-title">Sets: {{sets}}</span>
+          {{/if}}
+          {{#if reps}}
+          <span class="card-title">Reps: {{reps}}</span>
+          {{/if}}
+          {{#if duration}}
+          <span class="card-title">Duration: {{duration}} mins</span>
+          {{/if}}
+          {{#if distance}}
+          <span class="card-title">Distance: {{distance}} mi.</span>
+          {{/if}}
+        </div>
+      </label>
+      {{/each}}
+    </div>
+  </div>
 </div>
