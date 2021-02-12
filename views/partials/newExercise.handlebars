@@ -1,16 +1,21 @@
 {{> navbar}}
 <div class="container">
   <form action="/api/exercises" method="post">
+
     <h4 class="text-center">New Exercise</h4>
+
     <div class="form-row mt-4">
+      {{!-- Name input --}}
       <div class="form-group col-12">
         <label for="name">Name</label>
         <input type="text" class="form-control" name="name">
       </div>
+      {{!-- Type input --}}
       <div class="form-group col-6">
         <label for="type">Type</label>
         <input type="text" class="form-control" name="type">
       </div>
+      {{!-- Weight input --}}
       <div class="form-group col-6">
         <label for="weight">Weight</label>
         <div class="input-group">
@@ -20,14 +25,17 @@
           </div>
         </div>
       </div>
+      {{!-- Sets input --}}
       <div class="form-group col-6">
         <label for="sets">Sets</label>
         <input type="number" class="form-control" name="sets">
       </div>
+      {{!-- Reps input --}}
       <div class="form-group col-6">
         <label for="reps">Reps</label>
         <input type="number" class="form-control" name="reps">
       </div>
+      {{!-- Duration input --}}
       <div class="form-group col-6">
         <label for="duration">Duration</label>
         <div class="input-group">
@@ -37,6 +45,7 @@
           </div>
         </div>
       </div>
+      {{!-- Distance input --}}
       <div class="form-group col-6">
         <label for="distance">Distance</label>
         <div class="input-group">
@@ -46,6 +55,7 @@
           </div>
         </div>
       </div>
+
     </div>
     <button type="submit" class="btn btn-outline-light btn-lg">Save</button>
   </form>

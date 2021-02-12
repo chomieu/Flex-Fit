@@ -61,6 +61,10 @@ input[type="checkbox"] {
   opacity: 0.5;
 }
 
+.clear:hover, .badge:hover, .exerciseCard:hover {
+  cursor: pointer;
+}
+
 .plus {
   font-size: 100px;
   height: 200px;
