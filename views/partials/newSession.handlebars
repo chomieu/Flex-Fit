@@ -1,15 +1,15 @@
 {{> navbar}}
 <div class="container-fluid">
-  <form action="/api/sessions" method="post" class="row">
+  <form action="/{{#if update}}update{{else}}api{{/if}}/session/{{#if _id}}{{_id}}{{/if}}" method={{#if update}}"put"{{else}}"post"{{/if}} class="row">
     <div class="form-row col-md-12 col-lg-5 formUpper mx-3">
       <div class="form-group col-12">
         <h4 class="my-4 text-center">Session</h4>
-        <input type="datetime-local" class="form-control" name="name" id="sessionName">
+        <input type="datetime-local" class="form-control" name="name" id="sessionName" {{#if update}}value="{{update}}"{{/if}}>
         <button type="submit" class="btn btn-outline-light btn-lg my-2">Save</button>
       </div>
     </div>
     <div class="col-md-12 col-lg-6 mb-5 d-flex flex-column align-items-center">
-      <h4 class="form-row pl-1 my-4">Select Exercise</h4>
+      <h4 class="form-row pl-1 my-4">Select Exercises</h4>
       <div class="form-row justify-content-center">
         {{#if has8}}
         <a href="/newExercise" class="exerciseCard card m-2">

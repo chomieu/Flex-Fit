@@ -29,22 +29,35 @@ router.get("/newExercise", (req, res) => {
   })
 })
 
-// // session page
-// router.get("/session/:id", (req, res) => {
-//   db.Session.findbyId(req.params.id).then(data => {
-//     res.render("partials/viewSession", {session: data})
-//   })
-// })
+// view session
+router.get("/update/session/:id", (req, res) => {
+  db.Session.findOne({_id: req.params.id}).then(dataSession => {
+    db.Exercise.find({}).limit(8).lean().then(dataExercise => {
+      let show = true
+      dataExercise.length < 8 ? show = true : show = false
+      let oldInfo = localISOString(dataSession.name).slice(0, -3)
+      res.render("partials/newSession", { exercises: dataExercise, has8: show, update: oldInfo, _id: req.params.id })
+    })
+  })
+})
 
-// // exercise page
-// router.get("/exercise/:id", (req, res) => {
+// update session
+router.put("/update/session/:id", (req, res) => {
+  console.log(req.body)
+  db.Session.findByIdAndUpdate({_id: req.params.id}, req.body).then(data => {
+    res.redirect("/newSession")
+  })
+})
+
+// // update exercise
+// router.get("/update/exercise/:id", (req, res) => {
 //   db.Exercise.findbyId(req.params.id).then(data => {
 //     res.render("partials/viewExercise", {exercise: data})
 //   })
 // })
 
 // create new session
-router.post("/api/sessions", (req, res) => {
+router.post("/api/session", (req, res) => {
   if (!req.body.name) req.body.name = now
   db.Session.create(req.body).then(data => {
     res.redirect("/")
@@ -52,35 +65,25 @@ router.post("/api/sessions", (req, res) => {
 })
 
 // create new exercise
-router.post("/api/exercises", (req, res) => {
+router.post("/api/exercise", (req, res) => {
   db.Exercise.create(req.body).then(data => {
     res.redirect("/newExercise")
   })
 })
 
 // view sessions
-router.get("/api/sessions", (req, res) => {
+router.get("/api/session", (req, res) => {
   db.Session.find({}).then(data => {
     res.json(data)
   })
 })
 
 // view exercises
-router.get("/api/exercises", (req, res) => {
+router.get("/api/exercise", (req, res) => {
   db.Exercise.find({}).then(data => {
     res.json(data)
   })
 })
-
-// // update todo
-// router.put("/todo/:id", (req, res) => {
-//   console.log(req.body)
-//   const filter = { _id: req.params.id }
-//   const update = { todo: req.body.todo }
-//   db.Exercise.findByIdAndUpdate(filter, update).then(data => {
-//     res.json(data)
-//   })
-// })
 
 // delete session
 router.delete("/delete/session/:id", (req, res) => {
@@ -95,5 +98,14 @@ router.delete("/delete/exercise/:id", (req, res) => {
     if (err) throw err
   })
 })
+
+function localISOString(date) {
+  const offset = date.getTimezoneOffset() * 60 * 1000;
+  const localMs =  date.getTime() - offset;
+  const localDate = new Date(localMs);
+  const iso = localDate.toISOString();
+  const localISO = iso.slice(0, 19);
+  return localISO;
+}
 
 module.exports = router

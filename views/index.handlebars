@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     {{#each sessions}}
-    <section class="sessionCard card p-2 align-items-center">
+    <a href="/update/session/{{_id}}" class="sessionCard card p-2 align-items-center">
       <i class="material-icons text-secondary align-self-end clear" data-type="session" data-id="{{_id}}">clear</i>
       <h6 class="align-self-start ml-2">{{name}}</h6>
       <div class="d-flex justify-content-center flex-wrap">
@@ -11,7 +11,7 @@
         <span class="badge badge-pill badge-light m-1 px-3 py-1">{{name}}</span>
         {{/each}}
       </div>
-    </section>
+    </a>
     {{/each}}
   </div>
 </div>
