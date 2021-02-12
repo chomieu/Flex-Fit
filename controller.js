@@ -16,7 +16,9 @@ router.get("/", (req, res) => {
 // new session page
 router.get("/newSession", (req, res) => {
   db.Exercise.find({}).limit(8).lean().then(data => {
-    res.render("partials/newSession", { exercises: data })
+    let show = true
+    data.length < 8 ? show = true : show = false
+    res.render("partials/newSession", { exercises: data, has8: show })
   })
 })
 
@@ -51,9 +53,8 @@ router.post("/api/sessions", (req, res) => {
 
 // create new exercise
 router.post("/api/exercises", (req, res) => {
-  req.body.todo = true
   db.Exercise.create(req.body).then(data => {
-    res.redirect("/")
+    res.redirect("/newExercise")
   })
 })
 

@@ -10,7 +10,6 @@ const ExerciseSchema = new Schema({
     type: String,
     required: true
   },
-  todo: Boolean,
   weight: Number,
   sets: Number,
   reps: Number,

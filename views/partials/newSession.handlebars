@@ -1,42 +1,46 @@
 {{> navbar}}
 <div class="container-fluid">
-  <form action="/api/sessions" method="post">
-    <div class="form-row">
+  <form action="/api/sessions" method="post" class="row">
+    <div class="form-row col-md-12 col-lg-5 formUpper mx-3">
       <div class="form-group col-12">
-        <h4>Session</h4>
+        <h4 class="my-4 text-center">Session</h4>
         <input type="datetime-local" class="form-control" name="name" id="sessionName">
+        <button type="submit" class="btn btn-outline-light btn-lg my-2">Save</button>
       </div>
     </div>
-    <h4 class="form-row pl-1 mb-0">Select Exercise</h4>
-    <div class="form-row d-flex justify-content-center">
-      {{#each exercises}}
-      <label class="exerciseCard card m-2" for={{_id}}>
-        <input class="align-self-end" type="checkbox" name="exercises" value={{_id}} id={{_id}}>
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{name}}</h5>
-          <span class="card-title">{{type}}</span>
-          {{#if weight}}
-          <span class="card-title">Weight: {{weight}} lbs</span>
-          {{/if}}
-          {{#if sets}}
-          <span class="card-title">Sets: {{sets}}</span>
-          {{/if}}
-          {{#if reps}}
-          <span class="card-title">Reps: {{reps}}</span>
-          {{/if}}
-          {{#if duration}}
-          <span class="card-title">Duration: {{duration}} mins</span>
-          {{/if}}
-          {{#if distance}}
-          <span class="card-title">Distance: {{distance}} mi.</span>
-          {{/if}}
-        </div>
-      </label>
-      {{/each}}
-      <a href="/newExercise" class="exerciseCard card m-2">
-        <i class="material-icons plus text-light">add</i>
-      </a>
+    <div class="col-md-12 col-lg-6 mb-5 d-flex flex-column align-items-center">
+      <h4 class="form-row pl-1 my-4">Select Exercise</h4>
+      <div class="form-row justify-content-center">
+        {{#if has8}}
+        <a href="/newExercise" class="exerciseCard card m-2">
+          <i class="material-icons plus text-light">add</i>
+        </a>
+        {{/if}}
+        {{#each exercises}}
+        <label class="exerciseCard card m-2" for={{_id}}>
+          <input class="align-self-end" type="checkbox" name="exercises" value={{_id}} id={{_id}}>
+          <div class="card-body d-flex flex-column py-1">
+            <h5 class="card-title">{{name}}</h5>
+            <span class="card-title">{{type}}</span>
+            {{#if weight}}
+            <span class="card-title">Weight: {{weight}} lbs</span>
+            {{/if}}
+            {{#if sets}}
+            <span class="card-title">Sets: {{sets}}</span>
+            {{/if}}
+            {{#if reps}}
+            <span class="card-title">Reps: {{reps}}</span>
+            {{/if}}
+            {{#if duration}}
+            <span class="card-title">Duration: {{duration}} mins</span>
+            {{/if}}
+            {{#if distance}}
+            <span class="card-title">Distance: {{distance}} mi.</span>
+            {{/if}}
+          </div>
+        </label>
+        {{/each}}
+      </div>
     </div>
-    <button type="submit" class="btn btn-outline-light btn-lg mt-2">Save</button>
   </form>
 </div>
