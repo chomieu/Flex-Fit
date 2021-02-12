@@ -7,6 +7,10 @@ const SessionSchema = new Schema({
   exercises: [{
     type: Schema.Types.ObjectId,
     ref: "Exercise"
+  }],
+  todos: [{
+    type: Schema.Types.ObjectId,
+    ref: "Session"
   }]
 })
 

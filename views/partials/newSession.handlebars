@@ -1,17 +1,17 @@
 {{> navbar}}
-<div class="container">
-  <form action="/api/sessions" method="post" id="newSessionForm">
+<div class="container-fluid">
+  <form action="/api/sessions" method="post">
     <div class="form-row">
       <div class="form-group col-12">
-        <label for="name">Session</label>
+        <h4>Session</h4>
         <input type="datetime-local" class="form-control" name="name" id="sessionName">
       </div>
     </div>
-    <h3 class="form-row">Select Exercise</h3>
-    <div class="form-row">
+    <h4 class="form-row pl-1 mb-0">Select Exercise</h4>
+    <div class="form-row d-flex justify-content-center">
       {{#each exercises}}
-      <div class="exerciseCard card m-3">
-        <input type="checkbox" name="exercises" value={{_id}}>
+      <label class="exerciseCard card m-2" for={{_id}}>
+        <input class="align-self-end" type="checkbox" name="exercises" value={{_id}} id={{_id}}>
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{name}}</h5>
           <span class="card-title">{{type}}</span>
@@ -31,12 +31,12 @@
           <span class="card-title">Distance: {{distance}} mi.</span>
           {{/if}}
         </div>
-      </div>
+      </label>
       {{/each}}
-      <button href="/newExercise" class="exerciseCard card m-3">
-        <i class="material-icons plus text-secondary">add</i>
-      </button>
+      <a href="/newExercise" class="exerciseCard card m-2">
+        <i class="material-icons plus text-light">add</i>
+      </a>
     </div>
-      <button type="submit" class="btn btn-primary left">Save</button>
+    <button type="submit" class="btn btn-outline-light btn-lg mt-2">Save</button>
   </form>
 </div>
