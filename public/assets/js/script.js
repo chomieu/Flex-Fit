@@ -1,5 +1,15 @@
 $(function () {
-  var now = new Date
-  const options = {weekday: 'short', month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true}
-  $("#sessionName").attr("placeholder", now.toLocaleString("en-US", options))
+  $(".badge").on("click", (e) => {
+    $(e.target).hasClass("badge-secondary") ?
+      $(e.target).removeClass("badge-secondary").addClass("badge-light") :
+      $(e.target).removeClass("badge-light").addClass("badge-secondary")
+  })
+
+  $("#deleteAll").on("click", (e) => {
+    fetch("/clearall", {
+      method: "delete"
+    }).then(() => {
+      console.log("cleared all sessions")
+    })
+  })
 })

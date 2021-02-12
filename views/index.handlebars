@@ -1,15 +1,18 @@
 {{> navbar}}
-<div class="container">
+{{!-- <div class="container-fluid mt-4">Graph</div> --}}
+<div class="container-fluid mt-4">
   <div class="row">
     {{#each sessions}}
-    <div class="sessionCard card col-4">
+    <section class="sessionCard card p-2">
+      <i href=`/delete/${{{_id}}}` class="material-icons mt-1 text-danger text-right">clear</i></a>
       <h5>{{name}}</h5>
-      <div>
+      <div class="exercise-badge">
         {{#each exercises}}
-        {{name}}
+        <span class="badge badge-pill badge-secondary">{{name}}</span>
         {{/each}}
       </div>
-    </div>
+    </section>
     {{/each}}
   </div>
+  <button id="deleteAll">DELETE</button>
 </div>

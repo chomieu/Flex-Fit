@@ -1,11 +1,14 @@
 const express = require("express")
 const router = express.Router()
 const db = require("./models")
+const now = new Date
+const options = {weekday: 'short', month: 'numeric', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true}
 
 // main page
 router.get("/", (req, res) => {
-  db.Session.find({}).sort([['name', -1]]).populate("exercises").lean()
+  db.Session.find({}).sort([['name', -1]]).limit(28).populate("exercises").lean()
   .then(data => {
+    data.map(x => x.name = x.name.toLocaleString("en-US", options).replace(",", ""))
     res.render("index", {sessions: data})
   })
 })
@@ -38,8 +41,8 @@ router.get("/exercise/:id", (req, res) => {
 
 // create new session
 router.post("/api/sessions", (req, res) => {
+  if (!req.body.name) req.body.name = now
   db.Session.create(req.body).then(data => {
-    console.log(req.body)
     res.redirect("/")
   })
 })
@@ -62,6 +65,13 @@ router.get("/api/sessions", (req, res) => {
 router.get("/api/exercises", (req, res) => {
   db.Exercise.find({}).then(data => {
     res.json(data)
+  })
+})
+
+// delete all
+router.delete("/clearall", (req, res) => {
+  db.Session.remove({}, (err, data) => {
+    if (err) throw err
   })
 })
 
