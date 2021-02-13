@@ -25,7 +25,7 @@ npm install *dependency*
 
 ## Preview
 [Preview Video](https://drive.google.com/file/d/1h8pReD8-mr2DRyWx7r3EEwzhXCdqc6wR/view)</br>
-![Preview GIF](./public/assets/img/preview.gif)
+![Preview GIF](./preview.gif)
 
 ## Link
 <http://flex-fit.herokuapp.com/>
