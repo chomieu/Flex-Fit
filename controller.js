@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     .then(data => {
       data.map(x => x.name = x.name.toLocaleString("en-US", options).replace(",", ""))
       res.render("index", { sessions: data })
-    })
+    }).catch(err => {if (err) throw err})
 })
 
 // new session page
@@ -19,14 +19,14 @@ router.get("/newSession", (req, res) => {
     let show = true
     data.length < 8 ? show = true : show = false
     res.render("partials/newSession", { exercises: data, has8: show })
-  })
+  }).catch(err => {if (err) throw err})
 })
 
 // new exercise page
 router.get("/newExercise", (req, res) => {
   db.Exercise.find({}).limit(8).lean().then(data => {
     res.render("partials/newExercise", { exercises: data })
-  })
+  }).catch(err => {if (err) throw err})
 })
 
 // view session
@@ -38,7 +38,7 @@ router.get("/update/session/:id", (req, res) => {
       dataExercise.map(item => dataSession.exercises.indexOf(item._id) === -1 ? item.match = false : item.match = true)
       let oldInfo = localISOString(dataSession.name).slice(0, -3)
       res.render("partials/newSession", { exercises: dataExercise, has8: show, update: oldInfo, _id: req.params.id })
-    })
+    }).catch(err => {if (err) throw err})
   })
 })
 
@@ -48,43 +48,52 @@ router.post("/update/session/:id", (req, res) => {
   !req.body.exercises ? update = { name: req.body.name, exercises: [] } : update = req.body
   db.Session.findByIdAndUpdate({ _id: req.params.id }, update).then(data => {
     res.redirect("/")
+  }).catch(err => {if (err) throw err})
+})
+
+// view exercise
+router.get("/update/exercise/:id", (req, res) => {
+  db.Exercise.findOne({ _id: req.params.id }).then(dataOne => {
+    db.Exercise.find({}).limit(8).lean().then(dataAll => {
+      res.render("partials/newExercise", { exercises: dataAll, update: dataOne })
+    }).catch(err => {if (err) throw err})
   })
 })
 
-// // update exercise
-// router.get("/update/exercise/:id", (req, res) => {
-//   db.Exercise.findbyId(req.params.id).then(data => {
-//     res.render("partials/viewExercise", {exercise: data})
-//   })
-// })
+// update exercise
+router.post("/update/exercise/:id", (req, res) => {
+  db.Exercise.findByIdAndUpdate({ _id: req.params.id }, req.body).then(data => {
+    res.redirect("/newExercise")
+  }).catch(err => {if (err) throw err})
+})
 
 // create new session
 router.post("/api/session", (req, res) => {
   if (!req.body.name) req.body.name = now
   db.Session.create(req.body).then(data => {
     res.redirect("/")
-  })
+  }).catch(err => {if (err) throw err})
 })
 
 // create new exercise
 router.post("/api/exercise", (req, res) => {
   db.Exercise.create(req.body).then(data => {
     res.redirect("/newExercise")
-  })
+  }).catch(err => {if (err) throw err})
 })
 
 // view sessions
 router.get("/api/session", (req, res) => {
   db.Session.find({}).then(data => {
     res.json(data)
-  })
+  }).catch(err => {if (err) throw err})
 })
 
 // view exercises
 router.get("/api/exercise", (req, res) => {
   db.Exercise.find({}).then(data => {
     res.json(data)
-  })
+  }).catch(err => {if (err) throw err})
 })
 
 // delete session

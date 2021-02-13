@@ -1,10 +1,10 @@
 {{> navbar}}
 <div class="container-fluid">
-  <form action="/{{#if update}}update{{else}}api{{/if}}/session/{{#if _id}}{{_id}}/{{/if}}" method="post" class="row">
+  <form action="/{{#if update}}update/session/{{update._id}}{{else}}api/session/{{/if}}" method="post" class="row">
     <div class="form-row col-md-12 col-lg-5 formUpper mx-3">
       <div class="form-group col-12">
         <h4 class="my-4 text-center">Session</h4>
-        <input type="datetime-local" class="form-control" name="name" id="sessionName" {{#if update}}value={{update}}{{/if}}>
+        <input type="datetime-local" class="form-control" name="name" id="sessionName" value="{{#if update}}{{update.name}}{{update}}{{/if}}">
         <button type="submit" class="btn btn-outline-light btn-lg my-2">Save</button>
       </div>
     </div>
