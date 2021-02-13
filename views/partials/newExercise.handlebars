@@ -1,7 +1,7 @@
 {{> navbar}}
 <div class="container-fluid">
   <div class="row row-cols-2">
-  <form action="/api/exercise" method="post" class="col-md-12 col-lg-5 formUpper mx-3">
+  <form action="/api/exercise/" method="post" class="col-md-12 col-lg-5 formUpper mx-3">
     <h4 class="text-center my-4">New Exercise</h4>
     <div class="form-row">
       {{!-- Name input --}}
@@ -62,7 +62,7 @@
     <h4 class="text-center my-4">Your Exercises</h4>
     <div class="form-row d-flex justify-content-center">
       {{#each exercises}}
-      <label class="exerciseCard card m-2" for={{_id}}>
+      <div class="exerciseCard card m-2">
         <i class="material-icons align-self-end clear" data-type="exercise" data-id="{{_id}}">clear</i>
         <div class="card-body d-flex flex-column py-0">
           <h5 class="card-title">{{name}}</h5>
@@ -83,7 +83,7 @@
           <span class="card-title">Distance: {{distance}} mi.</span>
           {{/if}}
         </div>
-      </label>
+      </div>
       {{/each}}
     </div>
   </div>

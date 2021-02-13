@@ -1,5 +1,4 @@
 $(function () {
-
   $(".clear").on("click", (e) => {
     var id = $(e.target).data("id")
     var type = $(e.target).data("type")
@@ -7,12 +6,6 @@ $(function () {
 
     fetch(`/delete/${type}/${id}`, {
       method: "delete",
-    })
-  })
-
-  $("#deleteAll").on("click", (e) => {
-    fetch("/clearall", {
-      method: "delete"
     })
   })
 })

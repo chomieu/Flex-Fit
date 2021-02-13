@@ -1,5 +1,6 @@
 body, html {
   height: 100%;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 body {
@@ -96,4 +97,8 @@ input[type="checkbox"] {
   align-self: center;
   top: 100px;
   text-decoration: none;
+}
+
+i {
+  z-index: 3;
 }
