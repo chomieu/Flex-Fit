@@ -98,3 +98,7 @@ input[type="checkbox"] {
   top: 100px;
   text-decoration: none;
 }
+
+i {
+  z-index: 3;
+}
