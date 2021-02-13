@@ -1,24 +1,24 @@
 {{> navbar}}
 <div class="container-fluid">
   <div class="row row-cols-2">
-  <form action="/{{#if update}}update{{else}}api{{/if}}/exercise/{{#if _id}}{{_id}}{{/if}}" method="post" class="col-md-12 col-lg-5 formUpper mx-3">
+  <form action="/api/exercise/" method="post" class="col-md-12 col-lg-5 formUpper mx-3">
     <h4 class="text-center my-4">New Exercise</h4>
     <div class="form-row">
       {{!-- Name input --}}
       <div class="form-group col-12">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" value="{{#if update}}{{name}}{{/if}}">
+        <input type="text" class="form-control" name="name">
       </div>
       {{!-- Type input --}}
       <div class="form-group col-6">
         <label for="type">Type</label>
-        <input type="text" class="form-control" name="type" value={{type}}>
+        <input type="text" class="form-control" name="type">
       </div>
       {{!-- Weight input --}}
       <div class="form-group col-6">
         <label for="weight">Weight</label>
         <div class="input-group">
-          <input type="number" class="form-control" name="weight" value={{weight}}>
+          <input type="number" class="form-control" name="weight">
           <div class="input-group-append">
             <span class="input-group-text">lbs</span>
           </div>
@@ -27,18 +27,18 @@
       {{!-- Sets input --}}
       <div class="form-group col-6">
         <label for="sets">Sets</label>
-        <input type="number" class="form-control" name="sets" value={{sets}}>
+        <input type="number" class="form-control" name="sets">
       </div>
       {{!-- Reps input --}}
       <div class="form-group col-6">
         <label for="reps">Reps</label>
-        <input type="number" class="form-control" name="reps" value={{reps}}>
+        <input type="number" class="form-control" name="reps">
       </div>
       {{!-- Duration input --}}
       <div class="form-group col-6">
         <label for="duration">Duration</label>
         <div class="input-group">
-          <input type="number" class="form-control" name="duration" value={{duration}}>
+          <input type="number" class="form-control" name="duration">
           <div class="input-group-append">
             <span class="input-group-text">min</span>
           </div>
@@ -48,7 +48,7 @@
       <div class="form-group col-6">
         <label for="distance">Distance</label>
         <div class="input-group">
-          <input type="number" class="form-control" name="distance" value={{distance}}>
+          <input type="number" class="form-control" name="distance">
           <div class="input-group-append">
             <span class="input-group-text">mi.</span>
           </div>
@@ -62,7 +62,7 @@
     <h4 class="text-center my-4">Your Exercises</h4>
     <div class="form-row d-flex justify-content-center">
       {{#each exercises}}
-      <a href="/update/exercise/{{_id}}" class="exerciseCard card m-2">
+      <a href="/update/exercise/" class="exerciseCard card m-2">
         <i class="material-icons align-self-end clear" data-type="exercise" data-id="{{_id}}">clear</i>
         <div class="card-body d-flex flex-column py-0">
           <h5 class="card-title">{{name}}</h5>
