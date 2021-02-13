@@ -22,12 +22,19 @@ body {
 }
 
 .container-fluid {
-  /* max-width: 1500px; */
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.container-fluid form {
+  width: 100%;
+}
+
+.homepage {
+  max-width: 1400px;
 }
 
 .row {
@@ -53,7 +60,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.exerciseCard:hover, a:hover {
+.exerciseCard:hover, a:hover, i .clear:hover {
   text-decoration: none;
   color: white;
   background-color: rgba(128, 128, 128, 0.3);

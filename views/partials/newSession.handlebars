@@ -1,10 +1,10 @@
 {{> navbar}}
 <div class="container-fluid">
-  <form action="/{{#if update}}update{{else}}api{{/if}}/session/{{#if _id}}{{_id}}{{/if}}" method={{#if update}}"put"{{else}}"post"{{/if}} class="row">
+  <form action="/{{#if update}}update{{else}}api{{/if}}/session/{{#if _id}}{{_id}}/{{/if}}" method="post" class="row">
     <div class="form-row col-md-12 col-lg-5 formUpper mx-3">
       <div class="form-group col-12">
         <h4 class="my-4 text-center">Session</h4>
-        <input type="datetime-local" class="form-control" name="name" id="sessionName" {{#if update}}value="{{update}}"{{/if}}>
+        <input type="datetime-local" class="form-control" name="name" id="sessionName" {{#if update}}value={{update}}{{/if}}>
         <button type="submit" class="btn btn-outline-light btn-lg my-2">Save</button>
       </div>
     </div>
@@ -18,7 +18,7 @@
         {{/if}}
         {{#each exercises}}
         <label class="exerciseCard card m-2" for={{_id}}>
-          <input class="align-self-end" type="checkbox" name="exercises" value={{_id}} id={{_id}}>
+          <input class="align-self-end" type="checkbox" name="exercises" value={{_id}} id={{_id}} {{#if match}}checked{{/if}}>
           <div class="card-body d-flex flex-column py-1">
             <h5 class="card-title">{{name}}</h5>
             <span class="card-title">{{type}}</span>

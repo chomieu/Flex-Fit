@@ -31,10 +31,11 @@ router.get("/newExercise", (req, res) => {
 
 // view session
 router.get("/update/session/:id", (req, res) => {
-  db.Session.findOne({_id: req.params.id}).then(dataSession => {
+  db.Session.findOne({ _id: req.params.id }).then(dataSession => {
     db.Exercise.find({}).limit(8).lean().then(dataExercise => {
       let show = true
       dataExercise.length < 8 ? show = true : show = false
+      dataExercise.map(item => dataSession.exercises.indexOf(item._id) === -1 ? item.match = false : item.match = true)
       let oldInfo = localISOString(dataSession.name).slice(0, -3)
       res.render("partials/newSession", { exercises: dataExercise, has8: show, update: oldInfo, _id: req.params.id })
     })
@@ -42,10 +43,11 @@ router.get("/update/session/:id", (req, res) => {
 })
 
 // update session
-router.put("/update/session/:id", (req, res) => {
-  console.log(req.body)
-  db.Session.findByIdAndUpdate({_id: req.params.id}, req.body).then(data => {
-    res.redirect("/newSession")
+router.post("/update/session/:id", (req, res) => {
+  let update = {}
+  !req.body.exercises ? update = { name: req.body.name, exercises: [] } : update = req.body
+  db.Session.findByIdAndUpdate({ _id: req.params.id }, update).then(data => {
+    res.redirect("/")
   })
 })
 
@@ -87,21 +89,21 @@ router.get("/api/exercise", (req, res) => {
 
 // delete session
 router.delete("/delete/session/:id", (req, res) => {
-  db.Session.findByIdAndRemove({_id: req.params.id}, (err, data) => {
+  db.Session.findByIdAndRemove({ _id: req.params.id }, (err, data) => {
     if (err) throw err
   })
 })
 
 // delete exercise
 router.delete("/delete/exercise/:id", (req, res) => {
-  db.Exercise.findByIdAndRemove({_id: req.params.id}, (err, data) => {
+  db.Exercise.findByIdAndRemove({ _id: req.params.id }, (err, data) => {
     if (err) throw err
   })
 })
 
 function localISOString(date) {
   const offset = date.getTimezoneOffset() * 60 * 1000;
-  const localMs =  date.getTime() - offset;
+  const localMs = date.getTime() - offset;
   const localDate = new Date(localMs);
   const iso = localDate.toISOString();
   const localISO = iso.slice(0, 19);
