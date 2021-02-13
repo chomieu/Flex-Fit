@@ -24,7 +24,7 @@ npm install *dependency*
 ```
 
 ## Preview
-[Preview Video]()</br>
+[Preview Video](https://drive.google.com/file/d/1h8pReD8-mr2DRyWx7r3EEwzhXCdqc6wR/view)</br>
 ![Preview GIF](./public/assets/img/preview.gif)
 
 ## Link
